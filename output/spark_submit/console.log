@@ -1,0 +1,71 @@
+26/05/04 12:29:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/05/04 12:29:26 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at master-node/134.209.172.50:8032
+26/05/04 12:29:27 INFO Configuration: resource-types.xml not found
+26/05/04 12:29:27 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/05/04 12:29:27 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (1536 MB per container)
+26/05/04 12:29:27 INFO Client: Will allocate AM container, with 1280 MB memory including 256 MB overhead
+26/05/04 12:29:27 INFO Client: Setting up container launch context for our AM
+26/05/04 12:29:27 INFO Client: Setting up the launch environment for our AM container
+26/05/04 12:29:27 INFO Client: Preparing resources for our AM container
+26/05/04 12:29:27 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/jars/kafka/commons-pool2-2.12.0.jar -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/commons-pool2-2.12.0.jar
+26/05/04 12:29:28 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/jars/kafka/kafka-clients-3.9.0.jar -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/kafka-clients-3.9.0.jar
+26/05/04 12:29:29 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/jars/kafka/spark-sql-kafka-0-10_2.12-3.5.4.jar -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/spark-sql-kafka-0-10_2.12-3.5.4.jar
+26/05/04 12:29:30 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/jars/kafka/spark-token-provider-kafka-0-10_2.12-3.5.4.jar -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/spark-token-provider-kafka-0-10_2.12-3.5.4.jar
+26/05/04 12:29:30 INFO Client: Uploading resource file:/home/lalshmassi/m2_spark_ml.py -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/m2_spark_ml.py
+26/05/04 12:29:31 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/python/lib/pyspark.zip -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/pyspark.zip
+26/05/04 12:29:32 INFO Client: Uploading resource file:/opt/spark-3.5.4-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/py4j-0.10.9.7-src.zip
+26/05/04 12:29:32 INFO Client: Uploading resource file:/tmp/spark-0eddf723-ef50-44dc-bb80-d31ee22c4279/__spark_conf__14286080189199036259.zip -> hdfs://master-node:9000/user/lalshmassi/.sparkStaging/application_1777830883738_0027/__spark_conf__.zip
+26/05/04 12:29:33 INFO SecurityManager: Changing view acls to: lalshmassi
+26/05/04 12:29:33 INFO SecurityManager: Changing modify acls to: lalshmassi
+26/05/04 12:29:33 INFO SecurityManager: Changing view acls groups to: 
+26/05/04 12:29:33 INFO SecurityManager: Changing modify acls groups to: 
+26/05/04 12:29:33 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: lalshmassi; groups with view permissions: EMPTY; users with modify permissions: lalshmassi; groups with modify permissions: EMPTY
+26/05/04 12:29:33 INFO Client: Submitting application application_1777830883738_0027 to ResourceManager
+26/05/04 12:29:33 INFO YarnClientImpl: Submitted application application_1777830883738_0027
+26/05/04 12:29:34 INFO Client: Application report for application_1777830883738_0027 (state: ACCEPTED)
+26/05/04 12:29:34 INFO Client: 
+	 client token: N/A
+	 diagnostics: AM container is launched, waiting for AM container to Register with RM
+	 ApplicationMaster host: N/A
+	 ApplicationMaster RPC port: -1
+	 queue: root.default
+	 start time: 1777897773627
+	 final status: UNDEFINED
+	 tracking URL: http://master-node:8088/proxy/application_1777830883738_0027/
+	 user: lalshmassi
+26/05/04 12:29:59 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:29:59 INFO Client: 
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: worker-node-1
+	 ApplicationMaster RPC port: 41063
+	 queue: root.default
+	 start time: 1777897773627
+	 final status: UNDEFINED
+	 tracking URL: http://master-node:8088/proxy/application_1777830883738_0027/
+	 user: lalshmassi
+26/05/04 12:30:29 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:30:59 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:31:30 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:32:00 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:32:30 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:33:00 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:33:30 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:34:00 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:34:30 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:35:00 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:35:30 INFO Client: Application report for application_1777830883738_0027 (state: RUNNING)
+26/05/04 12:35:47 INFO Client: Application report for application_1777830883738_0027 (state: FINISHED)
+26/05/04 12:35:47 INFO Client: 
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: worker-node-1
+	 ApplicationMaster RPC port: 41063
+	 queue: root.default
+	 start time: 1777897773627
+	 final status: SUCCEEDED
+	 tracking URL: http://master-node:8088/proxy/application_1777830883738_0027/
+	 user: lalshmassi
+26/05/04 12:35:47 INFO ShutdownHookManager: Shutdown hook called
+26/05/04 12:35:47 INFO ShutdownHookManager: Deleting directory /tmp/spark-16fc8a02-e7b9-4852-a78b-bda93671e13f
+26/05/04 12:35:47 INFO ShutdownHookManager: Deleting directory /tmp/spark-0eddf723-ef50-44dc-bb80-d31ee22c4279
