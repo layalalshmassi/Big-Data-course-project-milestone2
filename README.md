@@ -145,9 +145,34 @@ Local matplotlib chart at `output/year_trend.png`.
 
 ---
 
-# Phase B — MLlib arrest predictor (5% sample)
+## Task 4 — Arrest rate
+*Aljazee Abuhemed (231800, `aljazyabuhaimed`)*
+
+**Cluster — overall:** **221,932 / 793,073 = 27.98%** (matches M1 within rounding).
+
+**Top arrest rates by crime type (min 100 records):**
+
+| Crime type | Records | Arrest rate |
+|------------|--------:|------------:|
+| NARCOTICS | 74,127 | 99.88% |
+| PROSTITUTION | 9,100 | 99.88% |
+| LIQUOR LAW VIOLATION | 2,349 | 99.83% |
+| GAMBLING | 1,314 | 99.77% |
+| INTERFERENCE WITH PUBLIC OFFICER | 803 | 80.70% |
+| WEAPONS VIOLATION | 8,893 | 74.60% |
+| CRIMINAL TRESPASS | 21,476 | 73.58% |
+| PUBLIC PEACE VIOLATION | 1,827 | 66.83% |
+| HOMICIDE | 13,173 | 48.11% |
+| SEX OFFENSE | 3,932 | 32.38% |
+
+The arrest rate splits into two regimes — proactive-policing crimes near 100%
+(report only exists because an officer made the stop) versus reactive-reporting
+crimes like THEFT (14.2%) and BURGLARY (6.7%) where most cases go unsolved. Phase B's
+ML model exploits this structure.
 
 ---
+
+# Phase B — MLlib arrest predictor (5% sample)
 
 ## Task 5 — Feature pipeline
 *Layal Alshmassi (231097, `layalalshmassi`)*
@@ -170,8 +195,6 @@ Sample feature vectors from the cluster training set:
 
 Vector layout: `[District, pri_idx, Hour, dom_idx]`.
 
----
-
 ## Task 6 — Train and evaluate three classifiers
 *Alanoud Alrowaite (231412, `aalrowaite`)*
 
@@ -189,8 +212,6 @@ Cluster results (5% sample of the full HDFS dataset):
 - GBT: (5553, 89, 1082, 1081)
 
 **Top model by AUC: GBT (0.8241).**
-
----
 
 ## Task 7 — Random Forest feature importances
 *Joud Abohaimed (231453, `jabohaimed`)*
@@ -215,7 +236,20 @@ and side-step that issue.
 
 # Phase C — Deployment evidence
 
----
+## Task 9 — Local execution
+*Aljazee Abuhemed (231800, `aljazyabuhaimed`)*
+
+Notebook executed end-to-end with `jupyter nbconvert --execute` (Python 3.9, PySpark
+3.5.1, Java 17). Cell 2 prints:
+
+```
+Where:           local
+Spark version:   3.5.1
+Spark master:    local[*]
+```
+
+10,000 rows generated in-memory by the W09B-style synthetic generator. All Tasks 1–7
+ran; outputs are embedded in `M2_Spark_ML_BigDataCourseProject.ipynb`.
 
 ## Task 10 — Cluster execution: client mode
 *Joud Abohaimed (231453, `jabohaimed`)*
@@ -252,8 +286,6 @@ Top model by AUC: GBT (0.8241)
 ```
 
 YARN application: `application_1777830883738_0026`.
-
----
 
 ## Task 11 — spark-submit (cluster mode)
 *Layal Alshmassi (231097, `layalalshmassi`)*
