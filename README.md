@@ -82,6 +82,43 @@ streaming MapReduce equivalent had to disk-shuffle between mapper and reducer.
 
 ---
 
+## Task 2 — Location hotspots (Spark SQL)
+*Alanoud Alrowaite (231412, `aalrowaite`)*
+
+```python
+crimes.createOrReplaceTempView("chicago_crimes")
+
+hotspots = spark.sql("""
+    SELECT  `Location Description` AS spot,
+            COUNT(*)               AS cases
+      FROM  chicago_crimes
+     WHERE  `Location Description` IS NOT NULL
+     GROUP  BY `Location Description`
+     ORDER  BY cases DESC
+     LIMIT  10
+""")
+```
+
+**M1 ↔ M2 — Top 10 hotspots (full dataset):**
+
+| Location | M1 | M2 |
+|----------|---:|---:|
+| STREET | 245,437 | 248,326 |
+| RESIDENCE | 136,238 | 136,393 |
+| APARTMENT | 60,925 | 61,235 |
+| SIDEWALK | 47,407 | 47,506 |
+| OTHER | 29,213 | 29,671 |
+| PARKING LOT/GARAGE(NON.RESID.) | 21,876 | 22,436 |
+| ALLEY | 18,258 | 18,349 |
+| SCHOOL, PUBLIC, BUILDING | 20,516 | 15,776 |
+| RESIDENCE-GARAGE | 14,266 | 14,291 |
+| SMALL RETAIL STORE | 13,755 | 13,804 |
+
+Slight differences come from M1's manual CSV split dropping a few hundred edge-case
+rows that Spark's CSV parser keeps.
+
+---
+
 # Phase B — MLlib arrest predictor (5% sample)
 
 ---
@@ -106,6 +143,26 @@ Sample feature vectors from the cluster training set:
 ```
 
 Vector layout: `[District, pri_idx, Hour, dom_idx]`.
+
+---
+
+## Task 6 — Train and evaluate three classifiers
+*Alanoud Alrowaite (231412, `aalrowaite`)*
+
+Cluster results (5% sample of the full HDFS dataset):
+
+| Model | Params | Train (s) | AUC | Accuracy | F1 | Precision | Recall |
+|-------|--------|----------:|----:|---------:|---:|----------:|-------:|
+| Logistic Regression | maxIter=100, regParam=0.01 | 24.7 | 0.6022 | 0.7280 | 0.6376 | 0.6923 | 0.7280 |
+| Random Forest | numTrees=100, maxDepth=5, maxBins=64 | 39.9 | 0.8075 | 0.8156 | 0.7802 | 0.8528 | 0.8156 |
+| **GBT** | maxIter=50, maxDepth=5, maxBins=64 | 463.2 | **0.8241** | **0.8500** | **0.8337** | **0.8610** | **0.8500** |
+
+**Confusion matrices (TN/FP/FN/TP):**
+- LR:  (5549, 93, 2030, 133)
+- RF:  (5641, 1, 1438, 725)
+- GBT: (5553, 89, 1082, 1081)
+
+**Top model by AUC: GBT (0.8241).**
 
 ---
 
