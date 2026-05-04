@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.creds.local
+.DS_Store
+spark-warehouse/
+metastore_db/
+derby.log
+data/chicago_crimes.csv
+notebook_runner.py
