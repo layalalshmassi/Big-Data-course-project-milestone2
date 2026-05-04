@@ -119,6 +119,32 @@ rows that Spark's CSV parser keeps.
 
 ---
 
+## Task 3 — Year trend
+*Joud Abohaimed (231453, `jabohaimed`)*
+
+Yearly counts on the full HDFS dataset:
+
+| Year | Incidents | | Year | Incidents |
+|---:|---:|---|---:|---:|
+| 2001 | 467,301 | | 2014 | 825 |
+| 2002 | 205,266 | | 2015 | 1,105 |
+| 2003 | 985     | | 2016 | 1,339 |
+| 2004 | 915     | | 2017 | 1,387 |
+| 2005 | 1,031   | | 2018 | 1,327 |
+| 2006 | 796     | | 2019 | 1,174 |
+| 2007 | 762     | | 2020 | 1,832 |
+| 2008 | 1,010   | | 2021 | 2,399 |
+| 2009 | 910     | | 2022 | 4,678 |
+| 2010 | 695     | | 2023 | 81,461 |
+| 2011 | 770     | | 2024 | 880   |
+| 2012 | 800     | | 2025 | 12,710 |
+| 2013 | 714     | | | |
+
+2001 + 2002 dominate, then a long quiet stretch through 2022 and a 2023 spike.
+Local matplotlib chart at `output/year_trend.png`.
+
+---
+
 # Phase B — MLlib arrest predictor (5% sample)
 
 ---
@@ -166,7 +192,66 @@ Cluster results (5% sample of the full HDFS dataset):
 
 ---
 
+## Task 7 — Random Forest feature importances
+*Joud Abohaimed (231453, `jabohaimed`)*
+
+```
+pri_idx    0.7712  =====================================
+Hour       0.0807  ====
+District   0.0763  ====
+dom_idx    0.0718  ====
+```
+
+`pri_idx` dominates because the per-crime arrest-rate distribution from Task 4 is
+itself dominated by crime type (NARCOTICS ≈ 99% vs THEFT ≈ 14%). Once a tree splits
+on the crime-type index it has most of its answer.
+
+Logistic Regression underperforms the tree models because it treats `pri_idx` as a
+numeric feature and fits a single linear coefficient — implying a meaningless
+ordering between crime types. Tree models split on individual values of the index
+and side-step that issue.
+
+---
+
 # Phase C — Deployment evidence
+
+---
+
+## Task 10 — Cluster execution: client mode
+*Joud Abohaimed (231453, `jabohaimed`)*
+
+```bash
+jabohaimed@master-node:~$ source /etc/profile.d/hadoop.sh
+jabohaimed@master-node:~$ source /etc/profile.d/spark.sh
+jabohaimed@master-node:~$ spark-submit --master yarn --deploy-mode client \
+    --num-executors 2 --executor-memory 768m --executor-cores 1 \
+    --driver-memory 1g notebook_runner.py
+```
+
+Excerpt from `output/cluster_yarn_log.txt`:
+
+```
+Where:           cluster
+Spark version:   3.5.4
+Spark master:    yarn
+Records loaded: 793,073
+Phase B working set: 39,534 rows  (5% sample, seed=42)
+Train rows: 31,728   Test rows: 7,806
+
+>> training LogisticRegression
+  AUC       0.6022
+  Train(s)  24.7
+>> training RandomForest
+  AUC       0.8075
+  Train(s)  39.9
+>> training GBT
+  AUC       0.8241
+  Train(s)  463.2
+
+Top model by AUC: GBT (0.8241)
+```
+
+YARN application: `application_1777830883738_0026`.
 
 ---
 
